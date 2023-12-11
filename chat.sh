@@ -9,7 +9,7 @@ if pgrep -f "ollama serve" > /dev/null; then
     ollama run "$comando"
 else
     echo "No se encontró el proceso ollama serve en ejecución."
-    ollama serve > /dev/null 2>&1 &  # Ejecutar en segundo plano
+    OLLAMA_HOST=0.0.0.0:11434 ollama serve > /dev/null 2>&1 &  # Ejecutar en segundo plano abriendo el puerto 11434
 
     comando=${1:-$defaultModel}  # Si no se proporciona un argumento, usar el valor de defaultModel
     ollama run "$comando"
